@@ -15,7 +15,7 @@ app.get('/posts/:id/comments', (req, res) => {
 
 app.post('/posts/:id/comments', (req, res) => {
     const commentId = randomBytes(4).toString('hex');
-    const {content} = req.body;
+    const { content } = req.body;
     //if the comments is not already associated to the post then it will return the array
     const comments = commentsByPostId[req.params.id] || [];
 

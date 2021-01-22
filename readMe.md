@@ -5,3 +5,7 @@
 > In the server there are two folders *posts* & *comments* this are both two diffrent servers as of microService architecture 
 
 - This app will have `post service` and `comments service`
+
+### we created the basic app, but now we will do it in async style i.e the micro-services style using the **`Event Bus`**
+
+> Checkout the **1. Event_bus** *branch* for the detailed understanding
