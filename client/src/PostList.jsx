@@ -7,7 +7,7 @@ export default () => {
     const [posts, setPosts] = useState({});
 
     const fetchPosts = async () => {
-        const res = await axios.get('https://4000-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/posts');
+        const res = await axios.get('https://4002-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/posts');
 
         setPosts(res.data);
     };
@@ -25,7 +25,7 @@ export default () => {
             >
                 <div className="card-body">
                     <h3>{post.title}</h3>
-                    <CommentList postId={post.id} />
+                    <CommentList comments={post.comments} />
                     <CommentCreate postId={post.id} />
                 </div>
             </div>
