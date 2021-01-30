@@ -7,7 +7,7 @@ export default () => {
     const [posts, setPosts] = useState({});
 
     const fetchPosts = async () => {
-        const res = await axios.get('https://4002-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/posts');
+        const res = await axios.get('http://localhost:4002/posts');
 
         setPosts(res.data);
     };

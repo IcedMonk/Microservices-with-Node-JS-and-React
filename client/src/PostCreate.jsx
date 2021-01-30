@@ -8,7 +8,7 @@ export default () => {
         event.preventDefault();
 
         await axios.post(
-            "https://4000-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/posts",
+            "http://localhost:4000/posts",
             {
                 title,
             }

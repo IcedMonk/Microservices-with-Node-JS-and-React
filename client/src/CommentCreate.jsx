@@ -7,7 +7,7 @@ export default ({ postId }) => {
     const onSubmit = async event => {
         event.preventDefault();
 
-        await axios.post(`https://4001-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/posts/${postId}/comments`, {
+        await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
             content
         });
 

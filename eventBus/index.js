@@ -12,16 +12,16 @@ app.post('/events', (req, res) => {
 
     events.push(event);
 
-    axios.post('https://4000-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/events', event).catch((err) => {
+    axios.post('http://localhost:4000/events', event).catch((err) => {
         console.log(err.message);
     });
-    axios.post('https://4003-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/events', event).catch((err) => {
+    axios.post('http://localhost:4003/events', event).catch((err) => {
         console.log(err.message);
     });
-    axios.post('https://4001-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/events', event).catch((err) => {
+    axios.post('http://localhost:4001/events', event).catch((err) => {
         console.log(err.message);
     });
-    axios.post('https://4002-daac66df-85fc-40b8-8dd2-fd5026da8f90.ws-us03.gitpod.io/events', event).catch((err) => {
+    axios.post('http://localhost:4002/events', event).catch((err) => {
         console.log(err.message);
     });
 
