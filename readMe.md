@@ -80,3 +80,45 @@ This will be for the comments, like a filter where a comments is checked before 
 
 ![](https://i.ibb.co/3Bm09Dn/event-store.png)
 
+
+# Docker & Kubernetis Config
+
+- After creating *Dockerfile*, we need to create the image & upload it to the Docker Hub
+
+```sh
+> docker build -t samyek/posts
+> docker build -t samyek/event-bus
+> docker push samyek/posts
+> docker push -t samyek/event-bus
+```
+
+- Now in `infra > k8s` folder create the configs for deployments(remember deploments are for managing pods & re-creates pod if crashed/deleted for some reason)
+- The naming convention for deployment file is `*-depl.yaml`. 
+
+```sh
+> docker push samyek/posts  #before applyig deployment upload image to docker hub
+
+> kubectl apply -f posts-depl.yaml
+```
+
+## NodePort Service(Not recommended)
+- we are trying out the `Node Service`, which is not for production & just for development
+- checkout the `posts-srv.yaml` for example, the below commands are for applying the Node service to the cluster
+
+```sh
+> kubectl apply -f posts-srv.yaml
+
+> kubectl get services
+        OR
+> kubectl describe service posts-srv
+```
+
+## Cluster IP services (recomended)
+
+- adding the extra lines of config to the `*-depl.yaml` the service which acts as a barrier for the pod connection
+
+```sh
+> kubectl apply -f event-bus-depl.yaml
+
+> kubectl get services #the url is the *alias* which we gave in config i.e in the metadata on type service
+```
