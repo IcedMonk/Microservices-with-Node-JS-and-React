@@ -80,3 +80,6 @@ This will be for the comments, like a filter where a comments is checked before 
 
 ![](https://i.ibb.co/3Bm09Dn/event-store.png)
 
+# kubernetis
+
+For more information on kubernitis, refer my [Notes](https://gist.github.com/IcedMonk/860b54e51d1a0ca28905d8367b03f274)
