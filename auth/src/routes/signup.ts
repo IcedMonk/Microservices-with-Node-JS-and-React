@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
 import * as jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
