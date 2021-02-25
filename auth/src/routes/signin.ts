@@ -1,9 +1,55 @@
-import * as express from 'express'
+import * as express from 'express';
+import { body } from 'express-validator';
+import { validateRequest } from '../middlewares/validate-request';
+import { User } from '../models/user';
+import { BadRequestError } from '../errors/bad-request-error';
+import { Password } from '../services/password';
+import * as jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-router.post('/api/users/signin', (req, res) => {
-  res.send('sign in')
-});
+router.post(
+  '/api/users/signin',
+  [
+    body('email').isEmail().withMessage('Email must be valid'),
+    body('password')
+      .trim()
+      .notEmpty()
+      .withMessage('You must supply a password'),
+  ],
+  validateRequest,
+  async (req: express.Request, res: express.Response) => {
+    const { email, password } = req.body;
 
-export { router as signinRouter }
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      throw new BadRequestError('User already exist');
+    }
+
+    const passwordsMatch = await Password.compare(
+      existingUser.password,
+      password
+    );
+    if (!passwordsMatch) {
+      throw new BadRequestError('Wrong Password');
+    }
+
+    // Generate JWT
+    const userJwt = jwt.sign(
+      {
+        id: existingUser.id,
+        email: existingUser.email,
+      },
+      process.env.JWT_KEY!
+    );
+
+    // Store it on session object
+    req.session.jwt = {
+      jwt: userJwt,
+    };
+
+    res.status(201).send(existingUser);
+  }
+);
+
+export { router as signinRouter };
