@@ -1,15 +1,14 @@
-import Head from 'next/head'
+import buildClient from '../api/build-client';
 
-export default function Home() {
-  return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        
-      </Head>
+const LandingPage = ({ currentUser }) => {
+  console.log(currentUser);
+  return <h1>hi there</h1>;
+};
 
-      <h1>hi there</h1>
-       
-    </div>
-  )
-}
+LandingPage.getInitialProps = async (context) => {
+  const client = buildClient(context);
+  const { data } = await client.get('/api/users/currentuser');
+  return data;
+};
+
+export default LandingPage;
