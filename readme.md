@@ -22,3 +22,7 @@ To get the screts
 ```sh
 > kubectl get secrets
 ```
+
+# Creating NPM module
+
+we in this commit, are starting to create a NPM package for our use to extract the business logic of error handling, etc to a NPM package. Which will help us in code reusability in diffrent micro services. This will be located in `common` folder.
